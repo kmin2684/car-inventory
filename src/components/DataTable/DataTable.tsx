@@ -1,7 +1,9 @@
+import {useState} from 'react'; 
 import { DataGrid, GridApi, GridCellValue, GridColumns } from '@mui/x-data-grid';
 import {cars} from '../../data/data';
 import { Button } from '@mui/material';
 import { numberWithCommas } from '../../utils/utilFunctions';
+import './DataTable.css';
 
 
 export const columns: GridColumns = [
@@ -42,13 +44,21 @@ export const columns: GridColumns = [
 
 const DataTable: React.FC = () => {
 
+    const [pageSize, setPageSize] = useState(10);
+    const pageSizeChangeHandler = (size:number) => {
+        setPageSize(size);
+    } 
+
     return (
-        <div style={{ height: 400, width: '860px' }}>
+        <div className="DataTable">
           <DataGrid
             rows={cars}
             columns={columns}
-            pageSize={5}
+            pageSize={pageSize}
             rowsPerPageOptions={[5, 10, 20]}
+            onPageSizeChange={pageSizeChangeHandler}
+            autoHeight={true}
+            hideFooterSelectedRowCount={true}
           />
         </div>
     )}
