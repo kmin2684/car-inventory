@@ -20,6 +20,9 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
+import Button from '@mui/material/Button';
+
+import './PersistentDrawer.css'
 
 const drawerWidth = 240;
 
@@ -85,7 +88,7 @@ export default function PersistentDrawerLeft() {
   };
 
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box sx={{ display: 'flex' }} className='PersistentDrawer'>
       <CssBaseline />
       <AppBar position="fixed" open={open}>
         <Toolbar>
@@ -98,9 +101,9 @@ export default function PersistentDrawerLeft() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap component="div">
-            Persistent drawer
-          </Typography>
+          <Button className='Add_a_new_vehicle' 
+          variant='outlined'>
+            Add a new vehicle</Button>
         </Toolbar>
       </AppBar>
       <Drawer
