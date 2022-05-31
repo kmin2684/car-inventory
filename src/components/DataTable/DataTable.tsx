@@ -1,8 +1,9 @@
-import { DataGrid, GridApi, GridCellValue } from '@mui/x-data-grid';
+import { DataGrid, GridApi, GridCellValue, GridColumns } from '@mui/x-data-grid';
 import {cars} from '../../data/data';
 import { Button } from '@mui/material';
 
-export const columns = [
+
+export const columns: GridColumns = [
     { field: 'id', headerName: 'No', width: 70 },
     { field: 'make', headerName: 'Make', width: 130 },
     { field: 'model', headerName: 'Model', width: 130 },
@@ -30,7 +31,7 @@ export const columns = [
             return alert(JSON.stringify(thisRow, null, 4));
           };
     
-          return <Button onClick={onClick}>Click</Button>;
+          return <Button onClick={onClick}>Edit</Button>;
         },
       }
   ];
@@ -38,7 +39,7 @@ export const columns = [
 const DataTable: React.FC = () => {
 
     return (
-        <div style={{ height: 400, width: '100%' }}>
+        <div style={{ height: 400, width: '720px' }}>
           <DataGrid
             rows={cars}
             columns={columns}
