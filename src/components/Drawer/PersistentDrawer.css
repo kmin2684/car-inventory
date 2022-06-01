@@ -1,4 +1,26 @@
+.PersistentDrawer .MuiToolbar-root {
+  justify-content: space-between;
+}
+
 .PersistentDrawer .Add_a_new_vehicle {
   color: white;
   border: 1px solid white;
 }
+
+.PersistentDrawer .search {
+  background-color: white;
+  margin: 1rem 1rem;
+}
+
+.PersistentDrawer .input_search {
+  /* height: 2rem; */
+  margin: 1rem;
+  /* color: white; */
+  background-color: white;
+  padding: 0 0 0 0.5rem;
+}
+
+/* .PersistentDrawer .input_search:active {
+  border: white;
+  background-color: white;
+} */

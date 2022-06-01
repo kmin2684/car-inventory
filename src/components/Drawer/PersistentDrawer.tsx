@@ -1,4 +1,5 @@
 import DataTable from "../DataTable/DataTable";
+import Chart from "../Chart/Chart";
 
 import * as React from 'react';
 import { styled, useTheme } from '@mui/material/styles';
@@ -21,6 +22,8 @@ import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import Button from '@mui/material/Button';
+import Input from '@mui/material/Input';
+import TextField from '@mui/material/TextField';
 
 import './PersistentDrawer.css'
 
@@ -92,18 +95,19 @@ export default function PersistentDrawerLeft() {
       <CssBaseline />
       <AppBar position="fixed" open={open}>
         <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            edge="start"
-            sx={{ mr: 2, ...(open && { display: 'none' }) }}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Button className='Add_a_new_vehicle' 
-          variant='outlined'>
-            Add a new vehicle</Button>
+          <div>
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              onClick={handleDrawerOpen}
+              edge="start"
+              sx={{ mr: 2, ...(open && { display: 'none' }) }}
+            >
+              <MenuIcon />
+            </IconButton>
+            <Button className='Add_a_new_vehicle' variant='outlined'>Add a new vehicle</Button>
+          </div>
+          <Input className='input_search' placeholder="Search" />
         </Toolbar>
       </AppBar>
       <Drawer
@@ -138,6 +142,7 @@ export default function PersistentDrawerLeft() {
       </Drawer>
       <Main open={open}>
         <DrawerHeader />
+        <Chart />
         <DataTable />
       </Main>
     </Box>
