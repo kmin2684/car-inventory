@@ -4,6 +4,7 @@ import { Counter } from './features/counter/Counter';
 import DataTable from './components/DataTable/DataTable';
 import ResponsiveDrawer from './components/Drawer/ResponsiveDrawer';
 import PersistentDrawer from './components/Drawer/PersistentDrawer';
+import ModalForm from './components/ModalForm/ModalForm';
 import './App.css';
 
 
@@ -14,6 +15,7 @@ function App() {
       <header className="App-header">
       </header>
       <PersistentDrawer />
+      <ModalForm />
     </div>
   );
 }
