@@ -1,5 +1,6 @@
 import DataTable from "../DataTable/DataTable";
 import Chart from "../Chart/Chart";
+import SearchButton from "../SearchButton/SearchButton";
 
 import * as React from 'react';
 import { styled, useTheme } from '@mui/material/styles';
@@ -108,6 +109,7 @@ export default function PersistentDrawerLeft() {
             <Button className='Add_a_new_vehicle' variant='outlined'>Add a new vehicle</Button>
           </div>
           <Input className='input_search' placeholder="Search" />
+          <SearchButton />
         </Toolbar>
       </AppBar>
       <Drawer
