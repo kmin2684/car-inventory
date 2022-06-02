@@ -28,7 +28,7 @@ export default function ModalForm() {
 
 
     return ( <>    
-        <Dialog className='ModalForm' open={true} maxWidth='lg' fullWidth={true} >
+        <Dialog className='ModalForm' open={false} maxWidth='lg' fullWidth={true} >
             <Paper className="title"> form </Paper>
             <Grid container columns={{ xs: 12, sm: 12, md: 12, lg:12 }} justifyContent="flex-start">   
 
