@@ -8,7 +8,6 @@ import ModalForm from './components/ModalForm/ModalForm';
 import './App.css';
 
 
-
 function App() {
   return (
     <div className="App">

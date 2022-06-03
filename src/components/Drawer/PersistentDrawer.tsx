@@ -2,6 +2,9 @@ import DataTable from "../DataTable/DataTable";
 import Chart from "../Chart/Chart";
 import SearchButton from "../SearchButton/SearchButton";
 
+import { useTypedSelector, useAppDispatch } from "../../store";
+import { modalFormActions } from "../../store/modalFormSlice";
+
 import * as React from 'react';
 import { styled, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -80,6 +83,14 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 }));
 
 export default function PersistentDrawerLeft() {
+  const modalForm = useTypedSelector(state => state.modalForm);
+  const dispatch = useAppDispatch();
+
+  const handleNewVehicle = (e : React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    dispatch(modalFormActions.addNew())
+
+  }
+
   const theme = useTheme();
   const [open, setOpen] = React.useState(true);
 
@@ -106,7 +117,7 @@ export default function PersistentDrawerLeft() {
             >
               <MenuIcon />
             </IconButton>
-            <Button className='Add_a_new_vehicle' variant='outlined'>Add a new vehicle</Button>
+            <Button className='Add_a_new_vehicle' variant='outlined' onClick={handleNewVehicle}>Add a new vehicle</Button>
           </div>
           <Input className='input_search' placeholder="Search" />
           <SearchButton />

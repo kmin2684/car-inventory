@@ -31,8 +31,32 @@ const modalFormSlice = createSlice({
         replaceModalForm(state: typeof initialState, action: {payload: typeof initialState, type: string}){
             state = action.payload
         },
-
-    },
+        addNew(state: typeof initialState, action: {type: string}) {
+            console.log('type is', action.type, state.isOn);
+            // state = {
+            //     isOn: true,
+            //     isEdit: false,
+            //     carData: {
+            //         id: '',
+            //         make: '',
+            //         model: '',
+            //         Year: '',
+            //         Price: '',
+            //         isLive: '',
+            //     }
+            // }
+            state.isOn = true;
+            state.isEdit = false;
+            state.carData= {
+                id: '1',
+                make: '',
+                model: '',
+                Year: '',
+                Price: '',
+                isLive: '',
+            }
+        },
+    } 
   });
   
   export const modalFormActions = modalFormSlice.actions;
