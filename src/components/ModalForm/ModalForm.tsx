@@ -65,27 +65,54 @@ export default function ModalForm() {
       }
 
     const handleFormSubmit = () => {
-    }
+        if (modalForm.isEdit) {
+            console.log('edit', modalForm.carData.id,
+            {
+                make: make.trim(),
+                model: model.trim(),
+                year: year.trim(),
+                price: price.trim(),
+                isLive, 
+            })
+        } else {
+                console.log('add a new car', 
+                {
+                    make: make.trim(),
+                    model: model.trim(),
+                    year: year.trim(),
+                    price: price.trim(),
+                    isLive, 
+                })
+            }
+        dispatch(modalFormActions.turnOn(false));
+            
+        }
+
+    useEffect(() => {
+        if (modalForm.isOn && !modalForm.isEdit) {
+
+        }
+    }, [modalForm.isOn, modalForm.isEdit])
 
     useEffect(() => {
         setMake(modalForm.carData.make)
-    }, [modalForm.carData.make])
+    }, [modalForm.isOn,modalForm.carData.make])
 
     useEffect(() => {
         setModel(modalForm.carData.model)
-    }, [modalForm.carData.model])
+    }, [modalForm.isOn,modalForm.carData.model])
 
     useEffect(() => {
         setYear(modalForm.carData.year)
-    }, [modalForm.carData.year])
+    }, [modalForm.isOn,modalForm.carData.year])
 
     useEffect(() => {
         setPrice(modalForm.carData.price)
-    }, [modalForm.carData.price])
+    }, [modalForm.isOn,modalForm.carData.price])
 
     useEffect(() => {
         setIsLive(modalForm.carData.isLive)
-    }, [modalForm.carData.isLive])
+    }, [modalForm.isOn,modalForm.carData.isLive])
 
     useEffect(() => {
         if (make.trim() && model.trim() && year.trim() && price.trim() ) {
@@ -174,7 +201,7 @@ export default function ModalForm() {
 
             </Grid>
             {modalForm.isEdit? <Button>Delete</Button> : null}
-            <Button disabled={!submitEnabled}>Submit</Button>
+            <Button disabled={!submitEnabled} onClick={handleFormSubmit}>Submit</Button>
             <Button onClick={handleModalClose}>Cancel</Button>
         </Dialog>
         </>
