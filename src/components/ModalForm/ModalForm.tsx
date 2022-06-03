@@ -17,35 +17,46 @@ export default function ModalForm() {
 
     const modalForm = useTypedSelector(state => state.modalForm);
     const dispatch = useAppDispatch();
+    
+    const [make, setMake] = useState(modalForm.carData.make);
+    const [model, setModel] = useState(modalForm.carData.model);
+    const [year, setYear] = useState(modalForm.carData.Year);
+    const [price, setPrice] = useState(modalForm.carData.Price)
+    const [isLive, setIsLive] = useState(modalForm.carData.isLive);
 
     const handlePriceChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        const onlyNums = e.target.value.replace(/[^0-9]/g, '');
-        dispatch(modalFormActions.replaceCarData({...modalForm.carData, Price: onlyNums})); 
+        // dispatch(modalFormActions.updatePrice(onlyNums)); 
+        setPrice(e.target.value.replace(/[^0-9]/g, ''));
     }
 
     const handleYearChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        const onlyNums = e.target.value.replace(/[^0-9]/g, '');
-        dispatch(modalFormActions.replaceCarData({...modalForm.carData, Year: onlyNums})); 
+        // dispatch(modalFormActions.replaceCarData({...modalForm.carData, Year: onlyNums})); 
+        setYear(e.target.value.replace(/[^0-9]/g, ''));
     }
 
     const handleMakeChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        const make = e.target.value;
-        dispatch(modalFormActions.replaceCarData({...modalForm.carData, make}))
+        setMake(e.target.value)
+        // dispatch(modalFormActions.replaceCarData({...modalForm.carData, make}))
+        
+    }
 
+    const handleModelChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        setModel(e.target.value)
+        // const model = e.target.value;
+        // dispatch(modalFormActions.replaceCarData({...modalForm.carData, model}))
     }
 
     const handleSaleStatusChange = (e: SelectChangeEvent<string>) => {
         if (e.target.value === 'Live') {
-            dispatch(modalFormActions.replaceCarData({...modalForm.carData, isLive: true}))
+            setIsLive(true)
+            // dispatch(modalFormActions.replaceCarData({...modalForm.carData, isLive: true}))
         } else {
-            dispatch(modalFormActions.replaceCarData({...modalForm.carData, isLive: false}))
+            setIsLive(false)
+            // dispatch(modalFormActions.replaceCarData({...modalForm.carData, isLive: false}))
         }
     }
 
-    const handleModelChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        const model = e.target.value;
-        dispatch(modalFormActions.replaceCarData({...modalForm.carData, model}))
-    }
+
 
     const handleModalClose = () => {
         dispatch(modalFormActions.turnOn(false))
@@ -71,7 +82,7 @@ export default function ModalForm() {
                     required
                     id="outlined-required"
                     label="Make"
-                    value={modalForm.carData.make}
+                    value={make}
                     onChange={handleMakeChange}
                 />
                 <FormHelperText>Required</FormHelperText>
@@ -82,7 +93,7 @@ export default function ModalForm() {
                     required
                     id="outlined-required"
                     label="Model"
-                    value={modalForm.carData.model}
+                    value={model}
                     onChange={handleModelChange}
                 />
                 <FormHelperText>Required</FormHelperText>
@@ -95,7 +106,7 @@ export default function ModalForm() {
                     label="Year"
                     inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
                     onChange = {handleYearChange}
-                    value = {modalForm.carData.Year}
+                    value = {year}
                     
                 />
                 <FormHelperText>Required</FormHelperText>
@@ -109,7 +120,7 @@ export default function ModalForm() {
                     
                     inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
                     onChange = {handlePriceChange}
-                    value = {modalForm.carData.Price}
+                    value = {price}
                 />
                 <FormHelperText>Required</FormHelperText>
             </FormControl>
@@ -121,7 +132,7 @@ export default function ModalForm() {
                 <Select
                 labelId="demo-simple-select-required-label"
                 id="demo-simple-select-required"
-                value={modalForm.carData.isLive ? 'Live' : 'Sold'}
+                value={isLive ? 'Live' : 'Sold'}
                 label="Status *"
                 onChange={handleSaleStatusChange}
                 >

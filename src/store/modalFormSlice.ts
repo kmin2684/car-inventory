@@ -45,6 +45,9 @@ const modalFormSlice = createSlice({
                 isLive: true,
             }
         },
+        updatePrice(state: typeof initialState, action: {payload: string , type: string}) {
+            state.carData.Price = action.payload
+        },
     } 
   });
   

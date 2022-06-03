@@ -13,6 +13,7 @@ export const createStore = (options?: ConfigureStoreOptions['preloadedState'] | 
     },
     // middleware: (getDefaultMiddleware) =>
     //   getDefaultMiddleware().concat(mainApi.middleware),
+    // devTools: false,
     ...options,
   });
 
