@@ -7,8 +7,8 @@ const initialState = {
         id: '',
         make: '',
         model: '',
-        Year: '',
-        Price: '',
+        year: '',
+        price: '',
         isLive: true,
     }
 }
@@ -40,17 +40,19 @@ const modalFormSlice = createSlice({
                 id: '1',
                 make: '',
                 model: '',
-                Year: '',
-                Price: '',
+                year: '',
+                price: '',
                 isLive: true,
             }
         },
         updatePrice(state: typeof initialState, action: {payload: string , type: string}) {
-            state.carData.Price = action.payload
+            state.carData.price = action.payload
         },
     } 
   });
   
+  export {initialState};
+
   export const modalFormActions = modalFormSlice.actions;
   
   export default modalFormSlice.reducer;

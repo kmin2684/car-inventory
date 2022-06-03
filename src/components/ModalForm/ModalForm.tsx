@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 
 import { useTypedSelector, useAppDispatch } from "../../store";
 import { modalFormActions } from "../../store/modalFormSlice";
@@ -20,8 +20,8 @@ export default function ModalForm() {
     
     const [make, setMake] = useState(modalForm.carData.make);
     const [model, setModel] = useState(modalForm.carData.model);
-    const [year, setYear] = useState(modalForm.carData.Year);
-    const [price, setPrice] = useState(modalForm.carData.Price)
+    const [year, setYear] = useState(modalForm.carData.year);
+    const [price, setPrice] = useState(modalForm.carData.price)
     const [isLive, setIsLive] = useState(modalForm.carData.isLive);
 
     const handlePriceChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -65,6 +65,25 @@ export default function ModalForm() {
     const handleFormSubmit = () => {
     }
 
+    useEffect(() => {
+        setMake(modalForm.carData.make)
+    }, [modalForm.carData.make])
+
+    useEffect(() => {
+        setModel(modalForm.carData.model)
+    }, [modalForm.carData.model])
+
+    useEffect(() => {
+        setYear(modalForm.carData.year)
+    }, [modalForm.carData.year])
+
+    useEffect(() => {
+        setPrice(modalForm.carData.price)
+    }, [modalForm.carData.price])
+
+    useEffect(() => {
+        setIsLive(modalForm.carData.isLive)
+    }, [modalForm.carData.isLive])
 
     return ( <>    
         <Dialog className='ModalForm' open={modalForm.isOn} maxWidth='lg' fullWidth={true} >
