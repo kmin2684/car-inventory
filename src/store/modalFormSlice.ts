@@ -9,7 +9,7 @@ const initialState = {
         model: '',
         Year: '',
         Price: '',
-        isLive: '',
+        isLive: true,
     }
 }
 
@@ -34,19 +34,6 @@ const modalFormSlice = createSlice({
             state.carData = action.payload.carData;
         },
         addNew(state: typeof initialState, action: {type: string}) {
-            console.log('type is', action.type, state.isOn);
-            // state = {
-            //     isOn: true,
-            //     isEdit: false,
-            //     carData: {
-            //         id: '',
-            //         make: '',
-            //         model: '',
-            //         Year: '',
-            //         Price: '',
-            //         isLive: '',
-            //     }
-            // }
             state.isOn = true;
             state.isEdit = false;
             state.carData= {
@@ -55,7 +42,7 @@ const modalFormSlice = createSlice({
                 model: '',
                 Year: '',
                 Price: '',
-                isLive: '',
+                isLive: true,
             }
         },
     } 
