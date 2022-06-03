@@ -163,7 +163,7 @@ export default function ModalForm() {
 
 
             </Grid>
-            {modalForm.isEdit? null : <Button>Delete</Button>}
+            {modalForm.isEdit? <Button>Delete</Button> : null}
             <Button>Submit</Button>
             <Button onClick={handleModalClose}>Cancel</Button>
         </Dialog>

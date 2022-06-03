@@ -47,7 +47,7 @@ export function columns (handlerFunction: any) : GridColumns {
                 model: thisRow.model,
                 year: thisRow.year, 
                 price: thisRow.price.replace(/[^0-9]/g, ''),
-                isLive: thisRow.isLive === 'live' ? true : false ,
+                isLive: thisRow.isLive === 'Live' ? true : false ,
               })
                 
             }
@@ -72,6 +72,7 @@ const DataTable: React.FC = () => {
     const dispatch = useAppDispatch();
 
     const handleEditClick = (carData: typeof modalFormState.carData) => {
+      // console.log(carData);
       dispatch(modalFormActions.replaceModalForm({
         isOn:true,
         isEdit: true,
