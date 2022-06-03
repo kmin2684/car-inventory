@@ -88,8 +88,8 @@ export default function PersistentDrawerLeft() {
 
   const handleNewVehicle = (e : React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     dispatch(modalFormActions.addNew())
-
   }
+  
 
   const theme = useTheme();
   const [open, setOpen] = React.useState(true);

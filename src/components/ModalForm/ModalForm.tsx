@@ -38,6 +38,10 @@ export default function ModalForm() {
 
     }
 
+    const handleModalClose = () => {
+        dispatch(modalFormActions.turnOn(false))
+      }
+
 
     return ( <>    
         <Dialog className='ModalForm' open={modalForm.isOn} maxWidth='lg' fullWidth={true} >
@@ -120,7 +124,7 @@ export default function ModalForm() {
             </Grid>
             {modalForm.isEdit? null : <Button>Delete</Button>}
             <Button>Submit</Button>
-            <Button>Cancel</Button>
+            <Button onClick={handleModalClose}>Cancel</Button>
         </Dialog>
         </>
         )
