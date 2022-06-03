@@ -19,6 +19,7 @@ const modalFormSlice = createSlice({
     reducers: {
         turnOn(state: typeof initialState, action: {payload: boolean, type: string}) {
             state.isOn = action.payload
+            state.carData = initialState.carData; 
         },
         
         turnEdit(state: typeof initialState, action: {payload: boolean, type: string}) {

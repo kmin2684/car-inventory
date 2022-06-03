@@ -17,6 +17,8 @@ export default function ModalForm() {
 
     const modalForm = useTypedSelector(state => state.modalForm);
     const dispatch = useAppDispatch();
+
+    const [submitEnabled, setSubmitEnabled] = useState(false);
     
     const [make, setMake] = useState(modalForm.carData.make);
     const [model, setModel] = useState(modalForm.carData.model);
@@ -84,6 +86,14 @@ export default function ModalForm() {
     useEffect(() => {
         setIsLive(modalForm.carData.isLive)
     }, [modalForm.carData.isLive])
+
+    useEffect(() => {
+        if (make.trim() && model.trim() && year.trim() && price.trim() ) {
+            setSubmitEnabled(true)
+        } else {
+            setSubmitEnabled(false)
+        }
+    }, [make, model, year, price])
 
     return ( <>    
         <Dialog className='ModalForm' open={modalForm.isOn} maxWidth='lg' fullWidth={true} >
@@ -164,7 +174,7 @@ export default function ModalForm() {
 
             </Grid>
             {modalForm.isEdit? <Button>Delete</Button> : null}
-            <Button>Submit</Button>
+            <Button disabled={!submitEnabled}>Submit</Button>
             <Button onClick={handleModalClose}>Cancel</Button>
         </Dialog>
         </>

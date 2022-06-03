@@ -16,7 +16,7 @@ export function columns (handlerFunction: any) : GridColumns {
     { field: 'make', headerName: 'Make', width: 130 },
     { field: 'model', headerName: 'Model', width: 130 },
     { field: 'year', headerName: 'Year', width: 130 },
-    { field: 'price', headerName: 'Price', width: 130, valueGetter: (params: {row: {price: number}}) => `$${numberWithCommas(params.row.price)}` },
+    { field: 'price', headerName: 'Price', width: 130, valueGetter: (params: {row: {price: string}}) => `$${numberWithCommas(params.row.price)}` },
     { field: 'isLive', headerName: 'Status', width: 130, valueGetter: (params: {row: {isLive: Boolean}}) => params.row.isLive ? "Live" : "Sold"},
     {
         field: 'edit',
@@ -52,7 +52,6 @@ export function columns (handlerFunction: any) : GridColumns {
                 
             }
             
-            // return alert(JSON.stringify(thisRow, null, 4));
           };
     
           return <Button onClick={onClick}>Edit</Button>;
@@ -72,7 +71,6 @@ const DataTable: React.FC = () => {
     const dispatch = useAppDispatch();
 
     const handleEditClick = (carData: typeof modalFormState.carData) => {
-      // console.log(carData);
       dispatch(modalFormActions.replaceModalForm({
         isOn:true,
         isEdit: true,
