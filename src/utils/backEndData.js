@@ -44,4 +44,11 @@ function createNewInventory(cars) {
   });
 }
 
+function initializeDataBase(cars) {
+  deleteAllCars();
+  createNewInventory(cars);
+}
+
+initializeDataBase(cars);
+
 export { cars, deleteAllCars, createNewInventory };

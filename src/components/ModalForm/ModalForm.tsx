@@ -89,12 +89,6 @@ export default function ModalForm() {
         }
 
     useEffect(() => {
-        if (modalForm.isOn && !modalForm.isEdit) {
-
-        }
-    }, [modalForm.isOn, modalForm.isEdit])
-
-    useEffect(() => {
         setMake(modalForm.carData.make)
     }, [modalForm.isOn,modalForm.carData.make])
 
