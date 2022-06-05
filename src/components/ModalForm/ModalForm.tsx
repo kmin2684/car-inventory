@@ -3,6 +3,8 @@ import {useState, useEffect} from 'react';
 import { useTypedSelector, useAppDispatch } from "../../store";
 import { modalFormActions } from "../../store/modalFormSlice";
 
+import { useUpdateCarMutation, useAddCarMutation, useDeleteCarMutation } from '../../store/mainApi';
+
 import Dialog from '@mui/material/Dialog';
 import { Grid, Paper} from '@mui/material';
 import TextField from '@mui/material/TextField';
@@ -25,6 +27,8 @@ export default function ModalForm() {
     const [year, setYear] = useState(modalForm.carData.year);
     const [price, setPrice] = useState(modalForm.carData.price)
     const [isLive, setIsLive] = useState(modalForm.carData.isLive);
+
+    const [updateCar, {isLoading: isUpdating}] = useUpdateCarMutation();
 
     const handlePriceChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         // dispatch(modalFormActions.updatePrice(onlyNums)); 
@@ -66,14 +70,16 @@ export default function ModalForm() {
 
     const handleFormSubmit = () => {
         if (modalForm.isEdit) {
-            console.log('edit', modalForm.carData.id,
-            {
+            const data = {
                 make: make.trim(),
                 model: model.trim(),
                 year: year.trim(),
                 price: price.trim(),
                 isLive, 
-            })
+            }
+            console.log('edit', modalForm.carData.id, data)
+            updateCar({id: modalForm.carData.id, patch: data})
+
         } else {
                 console.log('add a new car', 
                 {
@@ -120,7 +126,7 @@ export default function ModalForm() {
         <Dialog className='ModalForm' open={modalForm.isOn} maxWidth='lg' fullWidth={true} >
             <Paper className="title"> 
                 {modalForm.isEdit ? 
-                    `Edit - ${modalForm.carData.id}` 
+                    `Edit: ${modalForm.carData.id}` 
                     :
                     `Add a new vehicle`   
                 }

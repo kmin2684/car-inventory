@@ -13,16 +13,16 @@ import './DataTable.css';
 
 export function columns (handlerFunction: any) : GridColumns { 
   return [
-    { field: 'id', headerName: 'No', width: 70 },
+    { field: 'id', headerName: 'ID', width: 200 },
     { field: 'make', headerName: 'Make', width: 130 },
     { field: 'model', headerName: 'Model', width: 130 },
-    { field: 'year', headerName: 'Year', width: 130 },
-    { field: 'price', headerName: 'Price', width: 130, valueGetter: (params: {row: {price: string}}) => `$${numberWithCommas(params.row.price)}` },
-    { field: 'isLive', headerName: 'Status', width: 130, valueGetter: (params: {row: {isLive: Boolean}}) => params.row.isLive ? "Live" : "Sold"},
+    { field: 'year', headerName: 'Year', width: 70 },
+    { field: 'price', headerName: 'Price', width: 100, valueGetter: (params: {row: {price: string}}) => `$${numberWithCommas(params.row.price)}` },
+    { field: 'isLive', headerName: 'Status', width: 70, valueGetter: (params: {row: {isLive: Boolean}}) => params.row.isLive ? "Live" : "Sold"},
     {
         field: 'edit',
-        headerName: '',
-        width: 130, 
+        headerName: 'Edit',
+        width: 70, 
         sortable: false,
         hideSortIcons: true,
         disableColumnMenu: true,
@@ -81,7 +81,7 @@ const DataTable: React.FC = () => {
 
     const fetchedCars = useGetCarsQuery(null);
 
-    if (fetchedCars.isLoading) {
+    if (fetchedCars.isLoading || fetchedCars.isFetching) {
       return <div>...isLoading</div>
     } else if (fetchedCars.isError) {
       return <div>An error occured retrieving data from the database</div>
