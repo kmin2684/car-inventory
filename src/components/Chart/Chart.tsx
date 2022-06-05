@@ -1,5 +1,7 @@
 // import "./styles.css";
 import React from "react";
+import { useGetCarsQuery } from "../../store/mainApi";
+
 import {
   BarChart,
   Bar,
@@ -27,11 +29,30 @@ const data = [
 ];
 
 export default function Chart() {
+  const fetchedCars = useGetCarsQuery(null);
+  let soldCount = 0;
+  let liveCount = 0;
+
+  for (const key in fetchedCars.data) {
+    if (fetchedCars.data[key].isLive === true) liveCount ++;
+    else soldCount++;
+  }
+
+  const saleStatus = [{
+    name: 'sold',
+    count: soldCount
+    },
+    {
+      name: 'live',
+      count: liveCount
+    }
+  ]
+
   return (
     <BarChart
       width={500}
       height={300}
-      data={data}
+      data={saleStatus}
       margin={{
         top: 5,
         right: 30,
@@ -44,9 +65,10 @@ export default function Chart() {
       <YAxis />
       <Tooltip />
       <Legend />
-      <Bar dataKey="pv" fill="#8884d8" />
+      {/* <Bar dataKey="pv" fill="#8884d8" />
       <Bar dataKey="uv" fill="#82ca9d" />
-      <Bar dataKey="amt" fill="#62ca9d" />
+      <Bar dataKey="amt" fill="#62ca9d" /> */}
+      <Bar dataKey="count" fill="#8884d8" />
     </BarChart>
   );
 }
