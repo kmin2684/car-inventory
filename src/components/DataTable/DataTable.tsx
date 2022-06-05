@@ -16,9 +16,9 @@ export function columns (handlerFunction: any) : GridColumns {
     { field: 'id', headerName: 'ID', width: 200 },
     { field: 'make', headerName: 'Make', width: 130 },
     { field: 'model', headerName: 'Model', width: 130 },
-    { field: 'year', headerName: 'Year', width: 70 },
+    { field: 'year', headerName: 'Year', width: 100 },
     { field: 'price', headerName: 'Price', width: 100, valueGetter: (params: {row: {price: string}}) => `$${numberWithCommas(params.row.price)}` },
-    { field: 'isLive', headerName: 'Status', width: 70, valueGetter: (params: {row: {isLive: Boolean}}) => params.row.isLive ? "Live" : "Sold"},
+    { field: 'isLive', headerName: 'Status', width: 100, valueGetter: (params: {row: {isLive: Boolean}}) => params.row.isLive ? "Live" : "Sold"},
     {
         field: 'edit',
         headerName: 'Edit',

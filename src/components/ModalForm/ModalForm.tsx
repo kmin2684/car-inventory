@@ -3,7 +3,7 @@ import {useState, useEffect} from 'react';
 import { useTypedSelector, useAppDispatch } from "../../store";
 import { modalFormActions } from "../../store/modalFormSlice";
 
-import { useUpdateCarMutation, useAddCarMutation, useDeleteCarMutation } from '../../store/mainApi';
+import { useGetCarsQuery, useUpdateCarMutation, useAddCarMutation, useDeleteCarMutation } from '../../store/mainApi';
 
 import Dialog from '@mui/material/Dialog';
 import { Grid, Paper} from '@mui/material';
@@ -28,7 +28,10 @@ export default function ModalForm() {
     const [price, setPrice] = useState(modalForm.carData.price)
     const [isLive, setIsLive] = useState(modalForm.carData.isLive);
 
+    const fetchedCars = useGetCarsQuery(null);
     const [updateCar, {isLoading: isUpdating}] = useUpdateCarMutation();
+    const [addCar, {isLoading: isAdding}] = useAddCarMutation();
+    const [deleteCar, {isLoading: isDeleting}] = useDeleteCarMutation()
 
     const handlePriceChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         // dispatch(modalFormActions.updatePrice(onlyNums)); 
@@ -69,30 +72,39 @@ export default function ModalForm() {
       }
 
     const handleFormSubmit = () => {
+        const data = {
+            make: make.trim(),
+            model: model.trim(),
+            year: year.trim(),
+            price: price.trim(),
+            isLive, 
+        }
         if (modalForm.isEdit) {
-            const data = {
-                make: make.trim(),
-                model: model.trim(),
-                year: year.trim(),
-                price: price.trim(),
-                isLive, 
-            }
+
             console.log('edit', modalForm.carData.id, data)
             updateCar({id: modalForm.carData.id, patch: data})
 
         } else {
-                console.log('add a new car', 
-                {
-                    make: make.trim(),
-                    model: model.trim(),
-                    year: year.trim(),
-                    price: price.trim(),
-                    isLive, 
-                })
+                console.log('add a new car', data);
+                addCar(data);
             }
-        dispatch(modalFormActions.turnOn(false));
-            
+        
+        while (isUpdating || isAdding) {
+            console.log('updating/adding a car');
         }
+
+        dispatch(modalFormActions.turnOn(false));
+        fetchedCars.refetch()
+        }
+
+    const handleDelete = () => {
+        deleteCar(modalForm.carData.id)
+        dispatch(modalFormActions.turnOn(false));
+        while (isDeleting) {
+            console.log('Deleting a car');
+        }
+        fetchedCars.refetch()
+    }
 
     useEffect(() => {
         setMake(modalForm.carData.make)
@@ -200,7 +212,7 @@ export default function ModalForm() {
 
 
             </Grid>
-            {modalForm.isEdit? <Button>Delete</Button> : null}
+            {modalForm.isEdit? <Button onClick={handleDelete}>Delete</Button> : null}
             <Button disabled={!submitEnabled} onClick={handleFormSubmit}>Submit</Button>
             <Button onClick={handleModalClose}>Cancel</Button>
         </Dialog>
