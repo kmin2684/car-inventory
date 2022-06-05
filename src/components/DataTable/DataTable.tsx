@@ -2,6 +2,7 @@ import {useState} from 'react';
 import { useTypedSelector, useAppDispatch } from "../../store";
 import { modalFormActions, initialState as modalFormState } from "../../store/modalFormSlice";
 
+import { useGetCarsQuery } from '../../store/mainApi';
 
 import { DataGrid, GridApi, GridCellValue, GridColumns } from '@mui/x-data-grid';
 import {cars} from '../../data/data';
@@ -78,10 +79,35 @@ const DataTable: React.FC = () => {
       }))
     }
 
+    const fetchedCars = useGetCarsQuery(null);
+
+    if (fetchedCars.isLoading) {
+      return <div>...isLoading</div>
+    } else if (fetchedCars.isError) {
+      return <div>An error occured retrieving data from the database</div>
+    } else if (!fetchedCars.data) {
+      return <div>There are no cars to display</div>
+    }
+
+    console.log('fetchedCars', fetchedCars); 
+    // const carsRefined = fetchedCars.data.map(obj => {
+    //   const [key, value] = Object.entries(obj)[0]
+    //   return {id: key, ...value}; 
+    // }
+    //   )
+
+    const entries = Object.entries(fetchedCars.data);
+    const carsRefined = entries.map(entry => {
+      return {id: entry[0], ...entry[1]}
+    })
+    
+    console.log('carsRefined', carsRefined);
+
     return (
         <div className="DataTable">
           <DataGrid
-            rows={cars}
+            // rows={cars}
+            rows={carsRefined}
             columns={columns(handleEditClick)}
             pageSize={pageSize}
             rowsPerPageOptions={[5, 10, 20]}
