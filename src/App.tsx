@@ -33,13 +33,13 @@ function App() {
       <PersistentDrawer />
       <ModalForm />
 
-      <Snackbar open={snackBar.successOn} autoHideDuration={4000} onClose={handleSuccessClose} anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}>
+      <Snackbar open={snackBar.successOn} autoHideDuration={2000} onClose={handleSuccessClose} anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}>
         <Alert onClose={handleSuccessClose} severity="success" sx={{ width: '100%' }}>
           {snackBar.message}
         </Alert>
       </Snackbar>
 
-      <Snackbar open={snackBar.errorOn} autoHideDuration={4000} onClose={handleErrorClose} anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}>
+      <Snackbar open={snackBar.errorOn} autoHideDuration={2000} onClose={handleErrorClose} anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}>
         <Alert onClose={handleErrorClose} severity="success" sx={{ width: '100%' }}>
           {snackBar.message}
         </Alert>
