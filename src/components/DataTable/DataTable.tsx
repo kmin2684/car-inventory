@@ -4,7 +4,7 @@ import { modalFormActions, initialState as modalFormState } from "../../store/mo
 
 import { useGetCarsQuery } from '../../store/mainApi';
 
-import { DataGrid, GridApi, GridCellValue, GridColumns, GridToolbar  } from '@mui/x-data-grid';
+import { DataGrid, GridApi, GridCellValue, GridColumns, GridToolbar, GridValueFormatterParams   } from '@mui/x-data-grid';
 import { DataGridPro } from '@mui/x-data-grid-pro';
 import {cars} from '../../data/data';
 import { Button } from '@mui/material';
@@ -18,8 +18,8 @@ export function columns (handlerFunction: any) : GridColumns {
     { field: 'make', headerName: 'Make', width: 130 },
     { field: 'model', headerName: 'Model', width: 130 },
     { field: 'year', headerName: 'Year', width: 100 },
-    { field: 'price', headerName: 'Price', width: 100, valueGetter: (params: {row: {price: string}}) => `$${numberWithCommas(params.row.price)}` },
-    { field: 'isLive', headerName: 'Status', width: 100, valueGetter: (params: {row: {isLive: Boolean}}) => params.row.isLive ? "Live" : "Sold"},
+    { field: 'price', headerName: 'Price', width: 100, valueFormatter: (params: GridValueFormatterParams<string>) => { return `$${numberWithCommas(params.value)}`} },
+    { field: 'isLive', headerName: 'Status', width: 100, valueFormatter: (params: GridValueFormatterParams<boolean>) => { return params.value ? "Live" : "Sold"} },
     {
         field: 'edit',
         headerName: 'Edit',
@@ -106,7 +106,7 @@ const DataTable: React.FC = () => {
 
     return (
         <div className="DataTable">
-          <DataGridPro
+          <DataGrid
             // rows={cars}
             rows={carsRefined}
             columns={columns(handleEditClick)}
