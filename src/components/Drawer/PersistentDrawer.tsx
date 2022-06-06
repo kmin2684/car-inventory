@@ -4,6 +4,7 @@ import Chart from "../Chart/Chart";
 import SearchButton from "../SearchButton/SearchButton";
 
 import { useTypedSelector, useAppDispatch } from "../../store";
+import { useGetCarsQuery } from "../../store/mainApi";
 import { modalFormActions } from "../../store/modalFormSlice";
 
 import * as React from 'react';
@@ -29,6 +30,7 @@ import MailIcon from '@mui/icons-material/Mail';
 import Button from '@mui/material/Button';
 import Input from '@mui/material/Input';
 import TextField from '@mui/material/TextField';
+import CircularProgress from '@mui/material/CircularProgress';
 
 import './PersistentDrawer.css'
 
@@ -86,6 +88,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 export default function PersistentDrawerLeft() {
   const modalForm = useTypedSelector(state => state.modalForm);
   const dispatch = useAppDispatch();
+  const fetchedCars = useGetCarsQuery(null);
 
   const handleNewVehicle = (e : React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     dispatch(modalFormActions.addNew())
@@ -156,8 +159,15 @@ export default function PersistentDrawerLeft() {
       </Drawer>
       <Main open={open} className='main'>
         <DrawerHeader />
-        <Chart />
-        <DataTable />
+        {
+          (fetchedCars.isLoading || fetchedCars.isFetching)? <div className='CircularProgress-Wrapper'><CircularProgress /></div> :
+          fetchedCars.isError? <div>An error occured retrieving data from the database</div> :
+          !fetchedCars.data? <div>There are no cars to display</div> : 
+          <>
+            <Chart />
+            <DataTable />
+          </>
+        }
       </Main>
     </Box>
   );

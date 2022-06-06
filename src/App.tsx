@@ -1,6 +1,7 @@
 import React from 'react';
 import { useTypedSelector, useAppDispatch } from './store';
 import { snackBarActions } from './store/snackBarSlice';
+import { useGetCarsQuery } from './store/mainApi';
 
 
 import logo from './logo.svg';
@@ -20,7 +21,9 @@ import './App.css';
 function App() {
   const snackBar = useTypedSelector(state => state.snackBar);
   const dispatch = useAppDispatch();
-  
+
+  const fetchedCars = useGetCarsQuery(null);
+
   const handleSuccessClose = () => {
     dispatch(snackBarActions.turnSuccess({on: false, message: ''}))
   }
@@ -29,10 +32,19 @@ function App() {
     dispatch(snackBarActions.turnError({on: false, message: ''}))
   }
 
+  // if (fetchedCars.isLoading || fetchedCars.isFetching) {
+  //   return <div>...isLoading</div>
+  // } else if (fetchedCars.isError) {
+  //   return <div>An error occured retrieving data from the database</div>
+  // } else if (!fetchedCars.data) {
+  //   return <div>There are no cars to display</div>
+  // }
+
   return (
     <div className="App">
       <header className="App-header">
       </header>
+
       <PersistentDrawer />
       <ModalForm />
 

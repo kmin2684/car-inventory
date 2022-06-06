@@ -108,13 +108,13 @@ const DataTable: React.FC = () => {
 
     const fetchedCars = useGetCarsQuery(null);
 
-    if (fetchedCars.isLoading || fetchedCars.isFetching) {
-      return <div>...isLoading</div>
-    } else if (fetchedCars.isError) {
-      return <div>An error occured retrieving data from the database</div>
-    } else if (!fetchedCars.data) {
-      return <div>There are no cars to display</div>
-    }
+    // if (fetchedCars.isLoading || fetchedCars.isFetching) {
+    //   return <div>...isLoading</div>
+    // } else if (fetchedCars.isError) {
+    //   return <div>An error occured retrieving data from the database</div>
+    // } else if (!fetchedCars.data) {
+    //   return <div>There are no cars to display</div>
+    // }
 
     console.log('fetchedCars', fetchedCars); 
     // const carsRefined = fetchedCars.data.map(obj => {
@@ -123,7 +123,7 @@ const DataTable: React.FC = () => {
     // }
     //   )
 
-    const entries = Object.entries(fetchedCars.data);
+    const entries = Object.entries(fetchedCars.data!);
     const carsRefined = entries.map(entry => {
       return {id: entry[0], ...entry[1]}
     })
