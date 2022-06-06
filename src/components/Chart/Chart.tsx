@@ -67,8 +67,8 @@ export default function Chart() {
 
   return (
     <BarChart
-      width={ (Number(mainWidth) > 500) ? 500 : 320}
-      height={ (Number(mainWidth) > 500) ? 400 : 300}
+      width={ (Number(mainWidth) > 500) ? 450 : 320}
+      height={ (Number(mainWidth) > 500) ? 350 : 300}
       data={saleStatus}
       margin={{
         top: 5,
