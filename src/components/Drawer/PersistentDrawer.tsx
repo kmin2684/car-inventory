@@ -158,7 +158,6 @@ export default function PersistentDrawerLeft() {
         <DrawerHeader />
         <Chart />
         <DataTable />
-        <DataTable2 />
       </Main>
     </Box>
   );

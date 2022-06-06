@@ -1,19 +1,30 @@
-import {useState} from 'react'; 
+import {useState, useRef, useEffect} from 'react'; 
 import { useTypedSelector, useAppDispatch } from "../../store";
 import { modalFormActions, initialState as modalFormState } from "../../store/modalFormSlice";
 
+
 import { useGetCarsQuery } from '../../store/mainApi';
 
-import { DataGrid, GridApi, GridCellValue, GridColumns, GridToolbar, GridValueFormatterParams, GridComparatorFn, getGridNumericOperators   } from '@mui/x-data-grid';
+import {BetweenOperator} from './BetweenOperator';
+
+import { DataGrid, GridApi, GridCellValue, 
+  GridColumns, GridToolbar, GridValueFormatterParams, GridComparatorFn, getGridNumericOperators,
+  GridFilterOperator, GridFilterItem, GridFilterInputValueProps   
+} from '@mui/x-data-grid';
 import { DataGridPro } from '@mui/x-data-grid-pro';
 import {cars} from '../../data/data';
 import { Button } from '@mui/material';
 import { numberWithCommas } from '../../utils/utilFunctions';
+import TextField, { TextFieldProps } from '@mui/material/TextField';
+import Box from '@mui/material/Box';
+import SyncIcon from '@mui/icons-material/Sync';
 import './DataTable.css';
 
 
 const gridStringNumberComparator: GridComparatorFn<string> = (v1, v2) =>
   Number(v1) - Number(v2);
+
+
 
 export function columns (handlerFunction: any) : GridColumns { 
   return [
@@ -21,14 +32,16 @@ export function columns (handlerFunction: any) : GridColumns {
     { field: 'make', headerName: 'Make', width: 130 },
     { field: 'model', headerName: 'Model', width: 130 },
     { field: 'year', headerName: 'Year', width: 100, sortComparator: gridStringNumberComparator, 
-    valueGetter: (params: {row: {year: string}}) => Number(params.row.year) },
+    valueGetter: (params: {row: {year: string}}) => Number(params.row.year),
+    filterOperators: BetweenOperator
+   },
     { field: 'price', headerName: 'Price', width: 100, 
     valueFormatter: (params: GridValueFormatterParams<string>) => { return `$${numberWithCommas(params.value)}`},
     sortComparator: gridStringNumberComparator,
-    filterOperators: getGridNumericOperators()
+    filterOperators: BetweenOperator,
   
   },
-    { field: 'isLive', headerName: 'Status', width: 100, valueFormatter: (params: GridValueFormatterParams<boolean>) => { return params.value ? "Live" : "Sold"} },
+    { field: 'isLive', headerName: 'Status', width: 100, valueGetter: (params: {row: {isLive: boolean}}) => { return params.row.isLive ? "Live" : "Sold"} },
     {
         field: 'edit',
         headerName: 'Edit',
