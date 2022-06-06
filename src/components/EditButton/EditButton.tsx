@@ -9,6 +9,5 @@ export default function EditButton(prop: propType) {
     return (
         <IconButton onClick={prop.onClick} aria-label="serach" sx={{ color: 'primary', fontSize: '40' }}>
           <EditIcon />
-          {/* <img src={SearchIcon} style={{color:'white'}}></img> */}
         </IconButton>
         )}

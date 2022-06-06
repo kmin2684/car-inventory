@@ -1,7 +1,5 @@
 import DataTable from "../DataTable/DataTable";
-import DataTable2 from "../DataTable/DataTable2";
 import Chart from "../Chart/Chart";
-import SearchButton from "../SearchButton/SearchButton";
 
 import { useTypedSelector, useAppDispatch } from "../../store";
 import { useGetCarsQuery } from "../../store/mainApi";
@@ -15,7 +13,6 @@ import CssBaseline from '@mui/material/CssBaseline';
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import List from '@mui/material/List';
-import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -23,13 +20,8 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
 import Button from '@mui/material/Button';
-import Input from '@mui/material/Input';
-import TextField from '@mui/material/TextField';
 import CircularProgress from '@mui/material/CircularProgress';
 
 import './PersistentDrawer.css'
@@ -123,8 +115,6 @@ export default function PersistentDrawerLeft() {
             </IconButton>
             <Button className='Add_a_new_vehicle' variant='outlined' onClick={handleNewVehicle}>Add a new vehicle</Button>
           </div>
-          <Input className='input_search' placeholder="Search" />
-          <SearchButton />
         </Toolbar>
       </AppBar>
       <Drawer

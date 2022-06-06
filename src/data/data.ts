@@ -19,8 +19,3 @@ export const cars = [
     { id: 7, make: 'BMW', model: 'X3', year: 2018, price: 35000, isLive: true },
     { id: 8, make: 'Hyundai', model: 'Palisade', year: 2020, price: 52000, isLive: false },
   ];
-
-// export const cars_with_button = (data: typeof cars, button: any) => {
-//     data.map(car => {return {...car, button}})
-
-// }

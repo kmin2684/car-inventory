@@ -1,4 +1,4 @@
-import {useState, useRef, useEffect} from 'react'; 
+import {useState} from 'react'; 
 import { useTypedSelector, useAppDispatch } from "../../store";
 import { modalFormActions, initialState as modalFormState } from "../../store/modalFormSlice";
 import EditButton from '../EditButton/EditButton'
@@ -9,17 +9,11 @@ import { useGetCarsQuery } from '../../store/mainApi';
 import {BetweenOperator} from './BetweenOperator';
 
 import { DataGrid, GridApi, GridCellValue, 
-  GridColumns, GridToolbar, GridValueFormatterParams, GridComparatorFn, getGridNumericOperators,
-  GridFilterOperator, GridFilterItem, GridFilterInputValueProps   
+  GridColumns, GridToolbar, GridValueFormatterParams, GridComparatorFn, 
 } from '@mui/x-data-grid';
-import { DataGridPro } from '@mui/x-data-grid-pro';
-import {cars} from '../../data/data';
-import { Button } from '@mui/material';
+
 import { numberWithCommas } from '../../utils/utilFunctions';
-import TextField, { TextFieldProps } from '@mui/material/TextField';
-import Box from '@mui/material/Box';
-import SyncIcon from '@mui/icons-material/Sync';
-import EditIcon from '@mui/icons-material/Edit';
+
 
 import './DataTable.css';
 
@@ -79,9 +73,6 @@ export function columns (handlerFunction: any) : GridColumns {
             }
             
           };
-    
-          // return <Button onClick={onClick}>Edit</Button>;
-          // return <Button onClick={onClick} endIcon={<EditIcon/>}></Button>;
           return <EditButton onClick={onClick}/>;
         },
       }
@@ -108,20 +99,8 @@ const DataTable: React.FC = () => {
 
     const fetchedCars = useGetCarsQuery(null);
 
-    // if (fetchedCars.isLoading || fetchedCars.isFetching) {
-    //   return <div>...isLoading</div>
-    // } else if (fetchedCars.isError) {
-    //   return <div>An error occured retrieving data from the database</div>
-    // } else if (!fetchedCars.data) {
-    //   return <div>There are no cars to display</div>
-    // }
 
     console.log('fetchedCars', fetchedCars); 
-    // const carsRefined = fetchedCars.data.map(obj => {
-    //   const [key, value] = Object.entries(obj)[0]
-    //   return {id: key, ...value}; 
-    // }
-    //   )
 
     const entries = Object.entries(fetchedCars.data!);
     const carsRefined = entries.map(entry => {
@@ -133,7 +112,6 @@ const DataTable: React.FC = () => {
     return (
         <div className="DataTable">
           <DataGrid
-            // rows={cars}
             rows={carsRefined}
             columns={columns(handleEditClick)}
             pageSize={pageSize}

@@ -36,34 +36,27 @@ export default function ModalForm() {
     const [deleteCar, {isLoading: isDeleting}] = useDeleteCarMutation()
 
     const handlePriceChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        // dispatch(modalFormActions.updatePrice(onlyNums)); 
         setPrice(e.target.value.replace(/[^0-9]/g, ''));
     }
 
     const handleYearChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        // dispatch(modalFormActions.replaceCarData({...modalForm.carData, Year: onlyNums})); 
         setYear(e.target.value.replace(/[^0-9]/g, ''));
     }
 
     const handleMakeChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setMake(e.target.value)
-        // dispatch(modalFormActions.replaceCarData({...modalForm.carData, make}))
         
     }
 
     const handleModelChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setModel(e.target.value)
-        // const model = e.target.value;
-        // dispatch(modalFormActions.replaceCarData({...modalForm.carData, model}))
     }
 
     const handleSaleStatusChange = (e: SelectChangeEvent<string>) => {
         if (e.target.value === 'Live') {
             setIsLive(true)
-            // dispatch(modalFormActions.replaceCarData({...modalForm.carData, isLive: true}))
         } else {
             setIsLive(false)
-            // dispatch(modalFormActions.replaceCarData({...modalForm.carData, isLive: false}))
         }
     }
 

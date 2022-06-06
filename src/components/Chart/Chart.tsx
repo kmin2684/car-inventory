@@ -1,4 +1,3 @@
-// import "./styles.css";
 import {useEffect, useState} from "react";
 import { useGetCarsQuery } from "../../store/mainApi";
 
@@ -84,9 +83,6 @@ export default function Chart() {
       <YAxis />
       <Tooltip />
       <Legend />
-      {/* <Bar dataKey="pv" fill="#8884d8" />
-      <Bar dataKey="uv" fill="#82ca9d" />
-      <Bar dataKey="amt" fill="#62ca9d" /> */}
       <Bar dataKey="count" fill="#8884d8" />
     </BarChart>
   );
