@@ -1,5 +1,5 @@
 // import "./styles.css";
-import React from "react";
+import {useEffect, useState} from "react";
 import { useGetCarsQuery } from "../../store/mainApi";
 
 import {
@@ -28,10 +28,29 @@ const data = [
 
 ];
 
+function getMainWidth() {
+  return document.querySelector('body')!.clientWidth;
+
+}
+
 export default function Chart() {
   const fetchedCars = useGetCarsQuery(null);
   let soldCount = 0;
   let liveCount = 0;
+
+  // monitoring viewport width
+  const [mainWidth, setMainWidth] = useState<any>(getMainWidth());
+  useEffect(() => {
+    function handleResize() {
+      setMainWidth(getMainWidth());
+      console.log('main width:', getMainWidth())
+    }
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []
+  );
 
   for (const key in fetchedCars.data) {
     if (fetchedCars.data[key].isLive === true) liveCount ++;
@@ -50,8 +69,8 @@ export default function Chart() {
 
   return (
     <BarChart
-      width={500}
-      height={300}
+      width={ (Number(mainWidth) > 500) ? 500 : 320}
+      height={ (Number(mainWidth) > 500) ? 400 : 300}
       data={saleStatus}
       margin={{
         top: 5,
