@@ -4,7 +4,8 @@ import { modalFormActions, initialState as modalFormState } from "../../store/mo
 
 import { useGetCarsQuery } from '../../store/mainApi';
 
-import { DataGrid, GridApi, GridCellValue, GridColumns } from '@mui/x-data-grid';
+import { DataGrid, GridApi, GridCellValue, GridColumns, GridToolbar  } from '@mui/x-data-grid';
+import { DataGridPro } from '@mui/x-data-grid-pro';
 import {cars} from '../../data/data';
 import { Button } from '@mui/material';
 import { numberWithCommas } from '../../utils/utilFunctions';
@@ -13,7 +14,7 @@ import './DataTable.css';
 
 export function columns (handlerFunction: any) : GridColumns { 
   return [
-    { field: 'id', headerName: 'ID', width: 200 },
+    { field: 'id', headerName: 'ID', width: 200, resizable: true },
     { field: 'make', headerName: 'Make', width: 130 },
     { field: 'model', headerName: 'Model', width: 130 },
     { field: 'year', headerName: 'Year', width: 100 },
@@ -105,7 +106,7 @@ const DataTable: React.FC = () => {
 
     return (
         <div className="DataTable">
-          <DataGrid
+          <DataGridPro
             // rows={cars}
             rows={carsRefined}
             columns={columns(handleEditClick)}
@@ -114,6 +115,13 @@ const DataTable: React.FC = () => {
             onPageSizeChange={pageSizeChangeHandler}
             autoHeight={true}
             hideFooterSelectedRowCount={true}
+            components={{ Toolbar: GridToolbar }}
+            componentsProps={{
+              toolbar: {
+                showQuickFilter: true,
+                quickFilterProps: { debounceMs: 500 },
+              },
+            }}
           />
         </div>
     )}
