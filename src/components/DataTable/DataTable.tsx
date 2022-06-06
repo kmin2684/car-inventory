@@ -58,7 +58,6 @@ export function columns (handlerFunction: any) : GridColumns {
               .forEach(
                 (c) => (thisRow[c.field] = params.getValue(params.id, c.field)),
               );
-            console.log(thisRow);
             if (typeof thisRow.price === 'string') {
 
               handlerFunction({
@@ -99,15 +98,10 @@ const DataTable: React.FC = () => {
 
     const fetchedCars = useGetCarsQuery(null);
 
-
-    console.log('fetchedCars', fetchedCars); 
-
     const entries = Object.entries(fetchedCars.data!);
     const carsRefined = entries.map(entry => {
       return {id: entry[0], ...entry[1]}
     })
-    
-    console.log('carsRefined', carsRefined);
 
     return (
         <div className="DataTable">

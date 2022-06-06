@@ -77,7 +77,6 @@ export default function ModalForm() {
         }
         if (modalForm.isEdit) {
 
-            console.log('edit', modalForm.carData.id, data)
             try {
                 updateCar({id: modalForm.carData.id, patch: data})
                 dispatch(snackBarActions.turnSuccess({on: true, message: `successfully editted ${modalForm.carData.id}`}))
@@ -87,7 +86,6 @@ export default function ModalForm() {
             
 
         } else {
-                console.log('add a new car', data);
                 try {
                     addCar(data);
                     dispatch(snackBarActions.turnSuccess({on: true, message: `successfully added the model ${model}`}))

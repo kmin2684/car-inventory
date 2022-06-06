@@ -24,7 +24,6 @@ async function deleteAllCars() {
       method: "DELETE",
     }
   );
-  console.log(response);
 }
 
 //backend database

@@ -42,7 +42,6 @@ export default function Chart() {
   useEffect(() => {
     function handleResize() {
       setMainWidth(getMainWidth());
-      console.log('main width:', getMainWidth())
     }
     window.addEventListener('resize', handleResize);
     return () => {
