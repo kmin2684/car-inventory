@@ -80,7 +80,7 @@ export default function Chart() {
     >
       <CartesianGrid strokeDasharray="3 3" />
       <XAxis dataKey="name" />
-      <YAxis />
+      <YAxis allowDecimals={false}/>
       <Tooltip />
       <Legend />
       <Bar dataKey="count" fill="#8884d8" />
