@@ -2,6 +2,7 @@ import { configureStore, ConfigureStoreOptions } from '@reduxjs/toolkit';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import carInventory from './carInventorySlice';
 import modalForm from './modalFormSlice';
+import snackBar from './snackBarSlice';
 import {api} from './mainApi'
 
 
@@ -11,6 +12,7 @@ export const createStore = (options?: ConfigureStoreOptions['preloadedState'] | 
       [api.reducerPath]: api.reducer,
       carInventory,
       modalForm,
+      snackBar,
     },
 
     middleware: (getDefaultMiddleware) =>

@@ -2,6 +2,7 @@ import {useState, useEffect} from 'react';
 
 import { useTypedSelector, useAppDispatch } from "../../store";
 import { modalFormActions } from "../../store/modalFormSlice";
+import { snackBarActions } from '../../store/snackBarSlice';
 
 import { useGetCarsQuery, useUpdateCarMutation, useAddCarMutation, useDeleteCarMutation } from '../../store/mainApi';
 
@@ -82,11 +83,22 @@ export default function ModalForm() {
         if (modalForm.isEdit) {
 
             console.log('edit', modalForm.carData.id, data)
-            updateCar({id: modalForm.carData.id, patch: data})
+            try {
+                updateCar({id: modalForm.carData.id, patch: data})
+                dispatch(snackBarActions.turnSuccess({on: true, message: `successfully editted ${modalForm.carData.id}`}))
+            } catch {
+                dispatch(snackBarActions.turnError({on: true, message: `an error occurred editting ${modalForm.carData.id}`}))
+            }
+            
 
         } else {
                 console.log('add a new car', data);
-                addCar(data);
+                try {
+                    addCar(data);
+                    dispatch(snackBarActions.turnSuccess({on: true, message: `successfully added the model ${model}`}))
+                } catch {
+                    dispatch(snackBarActions.turnError({on: true, message: `an error occurred adding the model ${model}`}))
+                }
             }
         
         while (isUpdating || isAdding) {
@@ -94,16 +106,22 @@ export default function ModalForm() {
         }
 
         dispatch(modalFormActions.turnOn(false));
-        fetchedCars.refetch()
+        setTimeout(fetchedCars.refetch, 500)
         }
 
     const handleDelete = () => {
-        deleteCar(modalForm.carData.id)
-        dispatch(modalFormActions.turnOn(false));
+        try {
+            deleteCar(modalForm.carData.id)
+            dispatch(snackBarActions.turnSuccess({on: true, message: `successfully deleted ${modalForm.carData.id}`}))
+        } catch {
+            dispatch(snackBarActions.turnError({on: true, message: `an error occurred deleting ${modalForm.carData.id}`}))
+        }
+        
         while (isDeleting) {
             console.log('Deleting a car');
         }
-        fetchedCars.refetch()
+        dispatch(modalFormActions.turnOn(false));
+        setTimeout(fetchedCars.refetch, 500)
     }
 
     useEffect(() => {
