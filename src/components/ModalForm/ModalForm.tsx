@@ -1,4 +1,5 @@
 import {useState, useEffect} from 'react';
+import './ModalForm.css'
 
 import { useTypedSelector, useAppDispatch } from "../../store";
 import { modalFormActions } from "../../store/modalFormSlice";
@@ -211,8 +212,6 @@ export default function ModalForm() {
                 <FormHelperText>Required</FormHelperText>
             </FormControl>
 
-
-
             <FormControl required sx={{ m: 1, minWidth: 120 }}>
                 <InputLabel id="demo-simple-select-required-label">Status</InputLabel>
                 <Select
@@ -230,9 +229,15 @@ export default function ModalForm() {
 
 
             </Grid>
-            {modalForm.isEdit? <Button onClick={handleDelete}>Delete</Button> : null}
-            <Button disabled={!submitEnabled} onClick={handleFormSubmit}>Submit</Button>
-            <Button onClick={handleModalClose}>Cancel</Button>
+            <div className='footer'>
+                {modalForm.isEdit? <Button onClick={handleDelete} variant="contained" color='error'>Delete</Button> : 
+                <div> </div>
+                }
+                <div>
+                    <Button disabled={!submitEnabled} onClick={handleFormSubmit} variant="contained">Submit</Button>
+                    <Button onClick={handleModalClose} variant="contained" style={{marginLeft: '0.5rem'}}>Cancel</Button>
+                </div>
+            </div>
         </Dialog>
         </>
         )

@@ -75,7 +75,7 @@ function InputNumberInterval(props: GridFilterInputValueProps) {
         placeholder="From"
         label="From"
         variant="standard"
-        value={Number(filterValueState[0])}
+        value={filterValueState[0]? Number(filterValueState[0]) : ''}
         onChange={handleLowerFilterChange}
         type="number"
         inputRef={focusElementRef}
@@ -86,7 +86,7 @@ function InputNumberInterval(props: GridFilterInputValueProps) {
         placeholder="To"
         label="To"
         variant="standard"
-        value={Number(filterValueState[1])}
+        value={filterValueState[1]? Number(filterValueState[1]) : ''}
         onChange={handleUpperFilterChange}
         type="number"
         InputProps={applying ? { endAdornment: <SyncIcon /> } : {}}
