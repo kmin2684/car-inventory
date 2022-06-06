@@ -1,19 +1,12 @@
-import React from 'react';
 import { useTypedSelector, useAppDispatch } from './store';
 import { snackBarActions } from './store/snackBarSlice';
 import { useGetCarsQuery } from './store/mainApi';
 
-
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
-import DataTable from './components/DataTable/DataTable';
-import ResponsiveDrawer from './components/Drawer/ResponsiveDrawer';
 import PersistentDrawer from './components/Drawer/PersistentDrawer';
 import ModalForm from './components/ModalForm/ModalForm';
 import Alert from './components/Alert/Alert'
 
 import Snackbar from '@mui/material/Snackbar';
-import MuiAlert, { AlertProps } from '@mui/material/Alert';
 
 import './App.css';
 
@@ -31,14 +24,6 @@ function App() {
   const handleErrorClose = () => {
     dispatch(snackBarActions.turnError({on: false, message: ''}))
   }
-
-  // if (fetchedCars.isLoading || fetchedCars.isFetching) {
-  //   return <div>...isLoading</div>
-  // } else if (fetchedCars.isError) {
-  //   return <div>An error occured retrieving data from the database</div>
-  // } else if (!fetchedCars.data) {
-  //   return <div>There are no cars to display</div>
-  // }
 
   return (
     <div className="App">

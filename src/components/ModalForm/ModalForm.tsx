@@ -16,6 +16,7 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormHelperText from '@mui/material/FormHelperText';
+import LoadingButton from '@mui/lab/LoadingButton';
 
 export default function ModalForm() {
 
@@ -223,11 +224,18 @@ export default function ModalForm() {
 
             </Grid>
             <div className='footer'>
-                {modalForm.isEdit? <Button onClick={handleDelete} variant="contained" color='error'>Delete</Button> : 
+                {modalForm.isEdit? 
+                <LoadingButton 
+                loading={isUpdating || isAdding || isDeleting} 
+                loadingIndicator={(isUpdating || isAdding)? 'updating' : 'deleting'} 
+                onClick={handleDelete} variant="contained" color='error'>Delete</LoadingButton> : 
                 <div> </div>
                 }
                 <div>
-                    <Button disabled={!submitEnabled} onClick={handleFormSubmit} variant="contained">Submit</Button>
+                    <LoadingButton 
+                    loading={isUpdating || isAdding || isDeleting} 
+                    loadingIndicator={(isUpdating || isAdding)? 'updating' : 'deleting'} 
+                    disabled={!submitEnabled} onClick={handleFormSubmit} variant="contained">Submit</LoadingButton>
                     <Button onClick={handleModalClose} variant="contained" style={{marginLeft: '0.5rem'}}>Cancel</Button>
                 </div>
             </div>
