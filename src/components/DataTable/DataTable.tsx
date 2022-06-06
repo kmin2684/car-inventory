@@ -25,7 +25,7 @@ const gridStringNumberComparator: GridComparatorFn<string> = (v1, v2) =>
 
 export function columns (handlerFunction: any) : GridColumns { 
   return [
-    { field: 'id', headerName: 'ID', width: 230, resizable: true },
+    { field: 'id', headerName: 'ID', width: 230 },
     { field: 'make', headerName: 'Make', width: 130 },
     { field: 'model', headerName: 'Model', width: 130 },
     { field: 'year', headerName: 'Year', width: 100, sortComparator: gridStringNumberComparator,
