@@ -1,4 +1,5 @@
 import DataTable from "../DataTable/DataTable";
+import DataTable2 from "../DataTable/DataTable2";
 import Chart from "../Chart/Chart";
 import SearchButton from "../SearchButton/SearchButton";
 
@@ -153,10 +154,11 @@ export default function PersistentDrawerLeft() {
         </List>
 
       </Drawer>
-      <Main open={open}>
+      <Main open={open} className='main'>
         <DrawerHeader />
         <Chart />
         <DataTable />
+        <DataTable2 />
       </Main>
     </Box>
   );

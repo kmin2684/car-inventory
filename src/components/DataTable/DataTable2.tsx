@@ -6,7 +6,7 @@ import { useGetCarsQuery } from '../../store/mainApi';
 
 import { DataGrid, GridApi, GridCellValue, GridColumns, GridToolbar, GridValueFormatterParams, GridComparatorFn, getGridNumericOperators   } from '@mui/x-data-grid';
 import { DataGridPro } from '@mui/x-data-grid-pro';
-import {cars} from '../../data/data';
+import {cars2} from '../../data/data';
 import { Button } from '@mui/material';
 import { numberWithCommas } from '../../utils/utilFunctions';
 import './DataTable.css';
@@ -20,14 +20,8 @@ export function columns (handlerFunction: any) : GridColumns {
     { field: 'id', headerName: 'ID', width: 200, resizable: true },
     { field: 'make', headerName: 'Make', width: 130 },
     { field: 'model', headerName: 'Model', width: 130 },
-    { field: 'year', headerName: 'Year', width: 100, sortComparator: gridStringNumberComparator, 
-    valueGetter: (params: {row: {year: string}}) => Number(params.row.year) },
-    { field: 'price', headerName: 'Price', width: 100, 
-    valueFormatter: (params: GridValueFormatterParams<string>) => { return `$${numberWithCommas(params.value)}`},
-    sortComparator: gridStringNumberComparator,
-    filterOperators: getGridNumericOperators()
-  
-  },
+    { field: 'year', headerName: 'Year', width: 100, },
+    { field: 'price', headerName: 'Price', width: 100, filterOperators: getGridNumericOperators()},
     { field: 'isLive', headerName: 'Status', width: 100, valueFormatter: (params: GridValueFormatterParams<boolean>) => { return params.value ? "Live" : "Sold"} },
     {
         field: 'edit',
@@ -71,7 +65,7 @@ export function columns (handlerFunction: any) : GridColumns {
   ];}
 
 
-const DataTable: React.FC = () => {
+const DataTable2: React.FC = () => {
 
     const [pageSize, setPageSize] = useState(10);
     const pageSizeChangeHandler = (size:number) => {
@@ -117,7 +111,7 @@ const DataTable: React.FC = () => {
         <div className="DataTable">
           <DataGrid
             // rows={cars}
-            rows={carsRefined}
+            rows={cars2}
             columns={columns(handleEditClick)}
             pageSize={pageSize}
             rowsPerPageOptions={[5, 10, 20]}
@@ -135,4 +129,4 @@ const DataTable: React.FC = () => {
         </div>
     )}
 
-export default DataTable;
+export default DataTable2;
