@@ -1,6 +1,7 @@
 import {useState, useRef, useEffect} from 'react'; 
 import { useTypedSelector, useAppDispatch } from "../../store";
 import { modalFormActions, initialState as modalFormState } from "../../store/modalFormSlice";
+import EditButton from '../EditButton/EditButton'
 
 
 import { useGetCarsQuery } from '../../store/mainApi';
@@ -18,6 +19,8 @@ import { numberWithCommas } from '../../utils/utilFunctions';
 import TextField, { TextFieldProps } from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import SyncIcon from '@mui/icons-material/Sync';
+import EditIcon from '@mui/icons-material/Edit';
+
 import './DataTable.css';
 
 
@@ -28,11 +31,10 @@ const gridStringNumberComparator: GridComparatorFn<string> = (v1, v2) =>
 
 export function columns (handlerFunction: any) : GridColumns { 
   return [
-    { field: 'id', headerName: 'ID', width: 200, resizable: true },
+    { field: 'id', headerName: 'ID', width: 230, resizable: true },
     { field: 'make', headerName: 'Make', width: 130 },
     { field: 'model', headerName: 'Model', width: 130 },
-    { field: 'year', headerName: 'Year', width: 100, sortComparator: gridStringNumberComparator, 
-    valueGetter: (params: {row: {year: string}}) => Number(params.row.year),
+    { field: 'year', headerName: 'Year', width: 100, sortComparator: gridStringNumberComparator,
     filterOperators: BetweenOperator
    },
     { field: 'price', headerName: 'Price', width: 100, 
@@ -78,7 +80,9 @@ export function columns (handlerFunction: any) : GridColumns {
             
           };
     
-          return <Button onClick={onClick}>Edit</Button>;
+          // return <Button onClick={onClick}>Edit</Button>;
+          // return <Button onClick={onClick} endIcon={<EditIcon/>}></Button>;
+          return <EditButton onClick={onClick}/>;
         },
       }
   ];}

@@ -9,19 +9,12 @@ import DataTable from './components/DataTable/DataTable';
 import ResponsiveDrawer from './components/Drawer/ResponsiveDrawer';
 import PersistentDrawer from './components/Drawer/PersistentDrawer';
 import ModalForm from './components/ModalForm/ModalForm';
+import Alert from './components/Alert/Alert'
 
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert, { AlertProps } from '@mui/material/Alert';
 
 import './App.css';
-
-
-const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
-  props,
-  ref,
-) {
-  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
-});
 
 
 function App() {
@@ -43,13 +36,13 @@ function App() {
       <PersistentDrawer />
       <ModalForm />
 
-      <Snackbar open={snackBar.successOn} autoHideDuration={6000} onClose={handleSuccessClose} anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}>
+      <Snackbar open={snackBar.successOn} autoHideDuration={4000} onClose={handleSuccessClose} anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}>
         <Alert onClose={handleSuccessClose} severity="success" sx={{ width: '100%' }}>
           {snackBar.message}
         </Alert>
       </Snackbar>
 
-      <Snackbar open={snackBar.errorOn} autoHideDuration={6000} onClose={handleErrorClose} anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}>
+      <Snackbar open={snackBar.errorOn} autoHideDuration={4000} onClose={handleErrorClose} anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}>
         <Alert onClose={handleErrorClose} severity="success" sx={{ width: '100%' }}>
           {snackBar.message}
         </Alert>
