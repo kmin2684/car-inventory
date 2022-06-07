@@ -62,8 +62,8 @@ function createNewInventory(cars) {
   });
 }
 
-function initializeDataBase(cars) {
-  deleteAllCars();
+async function initializeDataBase(cars) {
+  await deleteAllCars();
   createNewInventory(cars);
 }
 

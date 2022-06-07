@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import {carType} from "../data/data";
 
 const initialState = {
     isOn: false,

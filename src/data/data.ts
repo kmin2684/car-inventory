@@ -1,4 +1,4 @@
-interface carType { id: string, make: string, model: string, year: number | null, price: number | null, isLive: boolean }
+export interface carType { id: string, make: string, model: string, year: number | string, price: number | string, isLive: boolean }
 
 export const cars = [
     { id: 1, make: 'Toyota', model: 'Rav4', year: '2018', price: '34000', isLive: true },

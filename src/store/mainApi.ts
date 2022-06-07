@@ -3,8 +3,8 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 export interface car {
     make: string,
     model: string, 
-    year: string,
-    price: string, 
+    year: number,
+    price: number, 
     isLive: boolean,
 }
 

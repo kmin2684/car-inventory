@@ -71,8 +71,8 @@ export default function ModalForm() {
         const data = {
             make: make.trim(),
             model: model.trim(),
-            year: year.trim(),
-            price: price.trim(),
+            year: Number(year.trim()),
+            price: Number(price.trim()),
             isLive, 
         }
         if (modalForm.isEdit) {
