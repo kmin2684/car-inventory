@@ -1,3 +1,5 @@
+interface carType { id: string, make: string, model: string, year: number | null, price: number | null, isLive: boolean }
+
 export const cars = [
     { id: 1, make: 'Toyota', model: 'Rav4', year: '2018', price: '34000', isLive: true },
     { id: 2, make: 'Tesla', model: 'Model3', year: '2017', price: '40000', isLive: false },

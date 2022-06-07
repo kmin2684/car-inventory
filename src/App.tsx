@@ -38,7 +38,7 @@ function App() {
       </Snackbar>
 
       <Snackbar open={snackBar.errorOn} autoHideDuration={2000} onClose={handleErrorClose} anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}>
-        <Alert onClose={handleErrorClose} severity="success" sx={{ width: '100%' }}>
+        <Alert onClose={handleErrorClose} severity="error" sx={{ width: '100%' }}>
           {snackBar.message}
         </Alert>
       </Snackbar>

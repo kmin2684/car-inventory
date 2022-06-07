@@ -1,18 +1,37 @@
+// const cars = [
+//   { make: "Toyota", model: "Rav4", year: "2018", price: "34000", isLive: true },
+//   {
+//     make: "Tesla",
+//     model: "Model3",
+//     year: "2017",
+//     price: "40000",
+//     isLive: false,
+//   },
+//   { make: "BMW", model: "X3", year: "2018", price: "35000", isLive: true },
+//   {
+//     make: "Hyundai",
+//     model: "Palisade",
+//     year: "2020",
+//     price: "52000",
+//     isLive: false,
+//   },
+// ];
+
 const cars = [
-  { make: "Toyota", model: "Rav4", year: "2018", price: "34000", isLive: true },
+  { make: "Toyota", model: "Rav4", year: 2018, price: 34000, isLive: true },
   {
     make: "Tesla",
     model: "Model3",
-    year: "2017",
-    price: "40000",
+    year: 2017,
+    price: 40000,
     isLive: false,
   },
-  { make: "BMW", model: "X3", year: "2018", price: "35000", isLive: true },
+  { make: "BMW", model: "X3", year: 2018, price: 35000, isLive: true },
   {
     make: "Hyundai",
     model: "Palisade",
-    year: "2020",
-    price: "52000",
+    year: 2020,
+    price: 52000,
     isLive: false,
   },
 ];

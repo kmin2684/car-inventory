@@ -28,9 +28,7 @@ const DataTable: React.FC = () => {
     }
 
     const entries = Object.entries(fetchedCars.data!);
-    const carsRefined = entries.map(entry => {
-      return {id: entry[0], ...entry[1]}
-    })
+    const carsRefined = entries.map(entry => ({id: entry[0], ...entry[1]}))
 
     return (
         <div className="DataTable">

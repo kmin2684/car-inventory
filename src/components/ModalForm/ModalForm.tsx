@@ -67,7 +67,7 @@ export default function ModalForm() {
         dispatch(modalFormActions.turnOn(false))
       }
 
-    const handleFormSubmit = () => {
+    const handleFormSubmit = async () => {
         const data = {
             make: make.trim(),
             model: model.trim(),
@@ -78,7 +78,7 @@ export default function ModalForm() {
         if (modalForm.isEdit) {
 
             try {
-                updateCar({id: modalForm.carData.id, patch: data})
+                await updateCar({id: modalForm.carData.id, patch: data})
                 dispatch(snackBarActions.turnSuccess({on: true, message: `successfully editted ${modalForm.carData.id}`}))
             } catch {
                 dispatch(snackBarActions.turnError({on: true, message: `an error occurred editting ${modalForm.carData.id}`}))
@@ -87,24 +87,20 @@ export default function ModalForm() {
 
         } else {
                 try {
-                    addCar(data);
+                    await addCar(data);
                     dispatch(snackBarActions.turnSuccess({on: true, message: `successfully added the model ${model}`}))
                 } catch {
                     dispatch(snackBarActions.turnError({on: true, message: `an error occurred adding the model ${model}`}))
                 }
             }
         
-        while (isUpdating || isAdding) {
-            console.log('updating/adding a car');
-        }
-
         dispatch(modalFormActions.turnOn(false));
         setTimeout(fetchedCars.refetch, 500)
         }
 
-    const handleDelete = () => {
+    const handleDelete = async () => {
         try {
-            deleteCar(modalForm.carData.id)
+            await deleteCar(modalForm.carData.id)
             dispatch(snackBarActions.turnSuccess({on: true, message: `successfully deleted ${modalForm.carData.id}`}))
         } catch {
             dispatch(snackBarActions.turnError({on: true, message: `an error occurred deleting ${modalForm.carData.id}`}))
@@ -196,7 +192,6 @@ export default function ModalForm() {
                     required
                     id="outlined-required"
                     label="Price ($)"
-                    
                     inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
                     onChange = {handlePriceChange}
                     value = {price}
