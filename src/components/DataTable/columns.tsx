@@ -1,6 +1,6 @@
 
 import {BetweenOperator} from './BetweenOperator';
-import { GridApi, GridColumns, GridValueFormatterParams, GridComparatorFn, GridCellValue} from '@mui/x-data-grid';
+import { GridApi, GridColumns, GridValueFormatterParams, GridComparatorFn} from '@mui/x-data-grid';
 import { numberWithCommas } from '../../utils/utilFunctions';
 import EditButton from '../EditButton/EditButton'
 
@@ -34,7 +34,7 @@ export function columns (handlerFunction: any) : GridColumns {
               e.stopPropagation(); // don't select this row after clicking
       
               const api: GridApi = params.api;
-              const thisRow: Record<string, GridCellValue> = {};
+              const thisRow: Record<string, string | number> = {};
       
               api
                 .getAllColumns()
@@ -42,18 +42,16 @@ export function columns (handlerFunction: any) : GridColumns {
                 .forEach(
                   (c) => (thisRow[c.field] = params.getValue(params.id, c.field)),
                 );
-              if (typeof thisRow.price === 'string') {
-  
+
                 handlerFunction({
                   id: thisRow.id,
                   make: thisRow.make,
                   model: thisRow.model,
-                  year: thisRow.year, 
-                  price: thisRow.price.replace(/[^0-9]/g, ''),
+                  year: String(thisRow.year), 
+                  price: String(thisRow.price),
                   isLive: thisRow.isLive === 'Live' ? true : false ,
                 })
-                  
-              }
+
               
             };
             return <EditButton onClick={onClick}/>;
