@@ -1,18 +1,6 @@
 import {useState, useRef, useEffect} from 'react'; 
-import { useTypedSelector, useAppDispatch } from "../../store";
-import { modalFormActions, initialState as modalFormState } from "../../store/modalFormSlice";
 
-
-import { useGetCarsQuery } from '../../store/mainApi';
-
-import { DataGrid, GridApi, GridCellValue, 
-  GridColumns, GridToolbar, GridValueFormatterParams, GridComparatorFn, getGridNumericOperators,
-  GridFilterOperator, GridFilterItem, GridFilterInputValueProps   
-} from '@mui/x-data-grid';
-import { DataGridPro } from '@mui/x-data-grid-pro';
-import {cars} from '../../data/data';
-import { Button } from '@mui/material';
-import { numberWithCommas } from '../../utils/utilFunctions';
+import { GridFilterOperator, GridFilterItem, GridFilterInputValueProps } from '@mui/x-data-grid';
 import TextField, { TextFieldProps } from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import SyncIcon from '@mui/icons-material/Sync';
