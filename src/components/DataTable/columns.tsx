@@ -1,6 +1,6 @@
 
 import {BetweenOperator} from './BetweenOperator';
-import { GridApi, GridColumns, GridValueFormatterParams, GridComparatorFn} from '@mui/x-data-grid';
+import { GridApi, GridColumns, GridValueFormatterParams, GridComparatorFn, getGridNumericOperators } from '@mui/x-data-grid';
 import { numberWithCommas } from '../../utils/utilFunctions';
 import EditButton from '../EditButton/EditButton'
 
@@ -13,12 +13,12 @@ export function columns (handlerFunction: any) : GridColumns {
       { field: 'make', headerName: 'Make', width: 130 },
       { field: 'model', headerName: 'Model', width: 130 },
       { field: 'year', headerName: 'Year', width: 100, sortComparator: gridStringNumberComparator,
-      filterOperators: BetweenOperator
+      filterOperators: BetweenOperator.concat(getGridNumericOperators())
      },
       { field: 'price', headerName: 'Price', width: 100, 
       valueFormatter: (params: GridValueFormatterParams<string>) => { return `$${numberWithCommas(params.value)}`},
       sortComparator: gridStringNumberComparator,
-      filterOperators: BetweenOperator,
+      filterOperators: BetweenOperator.concat(getGridNumericOperators()),
     
     },
       { field: 'isLive', headerName: 'Status', width: 100, valueGetter: (params: {row: {isLive: boolean}}) => { return params.row.isLive ? "Live" : "Sold"} },
