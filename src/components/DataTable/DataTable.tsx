@@ -16,7 +16,6 @@ const DataTable: React.FC = () => {
         setPageSize(size);
     } 
 
-    const modalForm = useTypedSelector(state => state.modalForm);
     const dispatch = useAppDispatch();
 
     const handleEditClick = (carData: typeof modalFormState.carData) => {
