@@ -3,3 +3,15 @@
   max-width: 870px;
   margin: 3rem 0 0 0;
 }
+
+.MuiDataGrid-panel {
+  max-width: 90%;
+}
+
+.MuiDataGrid-panelWrapper {
+  max-width: 100%;
+}
+
+.MuiDataGrid-filterForm {
+  flex-wrap: wrap;
+}
