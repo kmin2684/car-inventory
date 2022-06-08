@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react';
+import {useState, useEffect, useLayoutEffect} from 'react';
 import './ModalForm.css'
 
 import { useTypedSelector, useAppDispatch } from "../../store";
@@ -113,27 +113,27 @@ export default function ModalForm() {
         setTimeout(fetchedCars.refetch, 500)
     }
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         setMake(modalForm.carData.make)
     }, [modalForm.isOn,modalForm.carData.make])
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         setModel(modalForm.carData.model)
     }, [modalForm.isOn,modalForm.carData.model])
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         setYear(modalForm.carData.year)
     }, [modalForm.isOn,modalForm.carData.year])
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         setPrice(modalForm.carData.price)
     }, [modalForm.isOn,modalForm.carData.price])
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         setIsLive(modalForm.carData.isLive)
     }, [modalForm.isOn,modalForm.carData.isLive])
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         if (make.trim() && model.trim() && year.trim() && price.trim() ) {
             setSubmitEnabled(true)
         } else {
