@@ -15,8 +15,6 @@ function App() {
   const snackBar = useTypedSelector(state => state.snackBar);
   const dispatch = useAppDispatch();
 
-  const fetchedCars = useGetCarsQuery(null);
-
   const handleSuccessClose = () => {
     dispatch(snackBarActions.turnSuccess({on: false, message: ''}))
   }
