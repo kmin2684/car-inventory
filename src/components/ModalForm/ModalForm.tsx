@@ -221,7 +221,9 @@ export default function ModalForm() {
                 <LoadingButton 
                 loading={isUpdating || isAdding || isDeleting} 
                 loadingIndicator={(isUpdating || isAdding)? 'updating' : 'deleting'} 
-                onClick={handleDelete} variant="contained" color='error'>Delete</LoadingButton> : 
+                onClick={handleDelete} variant="contained" color='error'
+                disabled = {isLive}
+                >Delete</LoadingButton> : 
                 <div> </div>
                 }
                 <div>

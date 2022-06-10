@@ -64,7 +64,7 @@ export default function Chart() {
     >
       <CartesianGrid strokeDasharray="3 3" />
       <XAxis dataKey="name" />
-      <YAxis allowDecimals={false}/>
+      <YAxis allowDecimals={false} label={{ value: 'count', angle: -90, position: 'insideLeft' }}/>
       <Tooltip />
       <Legend />
       <Bar dataKey="count" fill="#8884d8" />
